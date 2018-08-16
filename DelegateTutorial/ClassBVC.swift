@@ -9,13 +9,17 @@
 import UIKit
 
 //MARK: step 1 Add Protoclo here
+protocol ClassBVCDelegate: class {
+    func changeBackgroundColor(_ color: UIColor?)
+}
 
 class ClassBVC: UIViewController {
     
     @IBOutlet weak var firstView: UIView!
     @IBOutlet weak var secondView: UIView!
-//MARK: step 2 Create a delegate property here, don't forget to make it weak!
 
+    //MARK: step 2 Create a delegate property here, don't forget to make it weak!
+    weak var delegate: ClassBVCDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,5 +43,6 @@ class ClassBVC: UIViewController {
         
         view.backgroundColor = tapGesture.view?.backgroundColor
         //MARK: step 3 Add the delegate method call here
+        delegate?.changeBackgroundColor(tapGesture.view?.backgroundColor)
     }
 }
